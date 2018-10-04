@@ -1,0 +1,127 @@
+/* Parcial #2 - Lenguajes de Programacion LPW-72 Grupo 1 2018_2 *
+*  Docente: Juan Camilo Correa Chica                            *
+*  Departamento de Electronica y Telecomunicaciones              *
+*  Instituto Tecnologico Metropolitano - ITM                    *
+*                                                               *
+*  Nombres: 1)DIEGO MAURICIO ZAPATA                             *
+*           2)BRYAN BLAIR ALVAREZ                              *
+*  Documentos: 1) 07217012                                      *
+*              2) 1152197228                                    *
+*  Hora aproximada del commit:                                  *
+*****************************************************************/
+
+/*NOTA: Comente apropiadamente cada linea de codigo de sus funciones. El comentario debe explicar que hace la linea de codigo comentada */
+
+/*Diseñe y codifique una funcion que permita identificar si dos cadenas de caracteres
+son anagramas. Un anagrama es una palabra que se conforma utilizando los caracteres (letras)
+de otra palabra, es decir es una copia de una palabra pero con las letras en distinto orden.
+Su funcion debe recibir como parametros de entrada las dos cadenas de caracteres y debe retornar
+un valor booleano que indica si las palabras son anagramas o no. */
+
+/*Diseñe y codifique una funcion que calcule el producto cruz y el producto punto entre dos
+vectores tridimensionales
+Ayuda teorica: https://www.geoan.com/analitica/vectores/producto_cruz.html https://www.geoan.com/analitica/vectores/producto_punto.html*/
+
+/* Diseñe y codifique una funcion que permita convertir un numero complejo a su representacion en
+fasores o que convierta el fasor a su representación en coordenadas rectangulares. Si se le ingresa
+un complejo rectangular, entonces al convertirlo en fasor se debe imprimir "Magnitud: __, Angulo: ___"
+el angulo es en radianes. Si se ingresa un fasor, entonces al convertirlo en complejo rectangular se
+debe imprimir "Real: __, Imaginaria: __"
+Ayuda teorica: http://tutorialesdeelectronicabasica.blogspot.com/2016/06/numeros-complejos-y-fasores-en-polar-y.html*/
+
+/*NOTA: Comente apropiadamente cada linea de codigo de sus funciones. El comentario debe explicar que hace la linea de codigo comentada */
+
+#include <iostream>
+#include <math.h>
+#include <cstring>
+using namespace std;
+
+
+void productocruz(int v1[], int v2[]);
+void productopunto(int v1[], int v2[]);
+void fasores_complejos(double a, double b, double r, double o);
+bool anagramas(char *cadena1, char *cadena2);
+double a=3;
+double b=56;
+
+double r=3;
+double o=65;
+
+int main()
+{
+    int v1[]={1,2,3};
+    int v2[]={-1,1,2};
+    char *cadena1="Esta es mi cadena";
+    char *cadena2="Esta es mi cadena";
+
+   productocruz(v1,v2);  //vamos a llamar las funciones para el producto cruz
+   productopunto(v1,v2); //vamos a llamar las funciones para el producto punto
+   fasores_complejos(a, b, r, o);
+   anagramas(cadena1,cadena2);
+    return 0;
+}
+
+void productocruz(int v1[], int v2[])
+{
+    int suma1=0;
+    int suma2=0;
+    int suma3=0;
+
+    suma1 =((v1[1]*v2[2])-(v1[2]*v2[1]));
+    suma2 =((v1[0]*v2[2])-(v1[2]*v2[0]));
+    suma3 =((v1[0]*v2[1])-(v1[1]*v2[0]));
+    cout<<"Producto Cruz es: ";
+    cout<<"("<<suma1<<")i-"<<"("<<suma2<<")j+"<<"("<<suma3<<")k"<<endl;
+}
+
+void productopunto(int v1[], int v2[])
+{
+    int suma=0;
+    suma =((v1[0]*v2[0])+(v1[1]*v2[1])+(v1[2]*v2[2]));
+    cout<<"Producto Punto es: "<<suma<<endl;
+}
+
+void fasores_complejos(double a, double b, double r, double o)
+{
+    double angulo=0;
+    double raiz=0;
+    double complejo1=0;
+    double complejo2=0;
+
+    raiz=sqrt((a*a)+(b*b));
+    angulo=atan(a/b);
+
+    complejo1=r*(cos(o));
+    complejo2 =r*(sin(o));
+
+
+
+    cout<<"La magnitud es: "<<raiz<<".  El angulo es: "<<angulo<<endl;
+    cout<<"El complejo es: "<<complejo1<<"+j("<<complejo2<<")"<<endl;
+
+}
+
+bool anagramas(char *cadena1, char *cadena2)
+{
+    int suma=0;
+    int suma1=0;
+            
+    for(int i = 0;i<strlen(cadena1);i++)
+    {
+        suma = suma + cadena1[i];
+    }
+    
+    for(int j = 0;j<strlen(cadena2);j++)
+    {
+        suma1 = suma1 + cadena2[j];
+    }
+    
+    if ((strlen(cadena2)==strlen(cadena1))(suma==suma1))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
